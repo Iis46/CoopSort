@@ -1,0 +1,36 @@
+import timeit
+print('Выберете метод сортировки: быстрая или методом расческой')
+choice=(input())
+if choice=='быстрая':
+    import random
+    def Fast_Sort(A):
+        if len(A) <= 1:
+            return A
+        else:
+            c = random.choice(A)
+            First = []
+            Second = []
+            Medium = []
+            for i in A:
+                if i < c:
+                    First.append(i)
+                elif i > c:
+                    Second.append(i)
+                else:
+                    Medium.append(i)
+            return Fast_Sort(First) + Medium + Fast_Sort(Second)
+    A=[1,7,5,8,4,10,15]
+    print(A)
+    print("Отсортированный: ",Fast_Sort(A))
+else:
+    def rascheska_sort(_list):
+        long = len(_list)  
+        while long > 1:
+            long = max(1, int(long / 1.25))  
+            for i in range(len(_list) - long):  
+                if _list[i] > _list[i + long]:  
+                    _list[i], _list[i + long] = _list[i + long], _list[i]
+        return _list
+    if __name__ == "__main__":
+        test_list = [1,7,5,8,4,10,15]
+        print(rascheska_sort(test_list))
